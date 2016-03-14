@@ -2,21 +2,18 @@
 
 namespace Isometriks\Bundle\LegacyFormBundle\Form;
 
-use Symfony\Component\Form\FormRegistryInterface;
+use Symfony\Component\Form\FormRegistry as BaseFormRegistry;
+use Symfony\Component\Form\ResolvedFormTypeFactoryInterface;
 
-class FormRegistry implements FormRegistryInterface
+class FormRegistry extends BaseFormRegistry
 {
-    private $inner;
+    private $legacyMap;
 
-    public function __construct(FormRegistryInterface $inner, array $legacyMap)
+    public function __construct(array $extensions, ResolvedFormTypeFactoryInterface $resolvedTypeFactory, array $legacyMap)
     {
-        $this->inner = $inner;
+        parent::__construct($extensions, $resolvedTypeFactory);
+
         $this->legacyMap = $legacyMap;
-    }
-
-    public function getExtensions()
-    {
-        $this->inner->getExtensions();
     }
 
     public function getType($name)
@@ -25,16 +22,11 @@ class FormRegistry implements FormRegistryInterface
             $name = $this->legacyMap[$name];
         }
 
-        return $this->inner->getType($name);
-    }
-
-    public function getTypeGuesser()
-    {
-        $this->inner->getTypeGuesser();
+        return parent::getType($name);
     }
 
     public function hasType($name)
     {
-        return isset($this->legacyMap[$name]) || $this->inner->hasType($name);
+        return isset($this->legacyMap[$name]) || parent::hasType($name);
     }
 }

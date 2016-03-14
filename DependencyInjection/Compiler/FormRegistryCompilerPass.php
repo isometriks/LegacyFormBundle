@@ -23,7 +23,8 @@ class FormRegistryCompilerPass implements CompilerPassInterface
             }
         }
 
-        $definition = $container->getDefinition('form.registry_decorator');
-        $definition->replaceArgument(1, $defaultAliases);
+        $definition = $container->getDefinition('form.registry');
+        $definition->setClass('Isometriks\Bundle\LegacyFormBundle\Form\FormRegistry');
+        $definition->addArgument($defaultAliases);
     }
 }
