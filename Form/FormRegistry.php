@@ -18,15 +18,10 @@ class FormRegistry extends BaseFormRegistry
 
     public function getType($name)
     {
-        if (strpos($name, '\\') === FALSE) {
+        if (isset($this->legacyMap[$name])) {
             $name = $this->legacyMap[$name];
         }
 
         return parent::getType($name);
-    }
-
-    public function hasType($name)
-    {
-        return isset($this->legacyMap[$name]) || parent::hasType($name);
     }
 }
