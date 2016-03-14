@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="form.registry_decorator" class="Isometriks\Bundle\LegacyFormBundle\Form\FormRegistry" decorates="form.registry" public="false">
+            <argument type="service" id="form.registry_decorator.inner" />
+
+            <!-- Replaced By Compiler Pass -->
+            <argument type="collection" />
+        </service>
+    </services>
+</container>

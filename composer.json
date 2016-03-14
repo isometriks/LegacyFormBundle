@@ -1,0 +1,15 @@
+{
+    "name": "isometriks/legacy-form-bundle",
+    "description": "Allows you to use old system of form aliases",
+    "keywords": ["symfony2", "form", "legacy", "alias"],
+    "authors": [
+        {
+            "name": "Craig Blanchette",
+            "email": "craig.blanchette@gmail.com",
+            "homepage": "http://isometriks.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "Isometriks\\Bundle\\LegacyFormBundle\\": "" }
+    }
+}
