@@ -20,5 +20,5 @@ install:
 script:
     - composer validate --strict
 
-    - vendor/bin/phpspec run
-    - vendor/bin/phpunit
+    - vendor/bin/phpspec run --no-interaction --format pretty
+    - vendor/bin/phpunit --testdox
