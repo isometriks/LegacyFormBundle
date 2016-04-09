@@ -1,6 +1,7 @@
 {
     "name": "isometriks/legacy-form-bundle",
     "type": "symfony-bundle",
+    "license": "MIT",
     "description": "Allows you to use old system of form aliases",
     "keywords": ["symfony2", "form", "legacy", "alias"],
     "authors": [
