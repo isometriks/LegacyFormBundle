@@ -30,6 +30,8 @@ final class LegacyFormAliasesTest extends KernelTestCase
      */
     protected function setUp()
     {
+        \Locale::setDefault('en');
+
         self::bootKernel();
 
         $this->formFactory = static::$kernel->getContainer()->get('form.factory');
