@@ -22,7 +22,7 @@ final class SymfonyFormAliasesTest extends KernelTestCase
      */
     protected static function createKernel(array $options = [])
     {
-        return new TestKernel(false);
+        return new TestKernel();
     }
 
     /**

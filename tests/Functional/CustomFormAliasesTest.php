@@ -26,7 +26,7 @@ final class CustomFormAliasesTest extends KernelTestCase
      */
     protected static function createKernel(array $options = [])
     {
-        return new TestKernel(false, function (ContainerBuilder $container, LoaderInterface $loader) {
+        return new TestKernel(function (ContainerBuilder $container, LoaderInterface $loader) {
             $definition = new Definition(TextType::class);
             $definition->addTag('form.type', ['alias' => 'custom_text']);
 

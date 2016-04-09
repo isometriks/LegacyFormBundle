@@ -20,15 +20,14 @@ final class TestKernel extends Kernel
      */
     private $initializer;
 
-    public function __construct($debug, callable $initializer = null)
+    /**
+     * @param callable|null $initializer
+     */
+    public function __construct(callable $initializer = null)
     {
-        if (null === $initializer) {
-            $initializer = function (ContainerBuilder $container, LoaderInterface $loader) {};
-        }
+        $this->initializer = $initializer ?: function (ContainerBuilder $container, LoaderInterface $loader) {};
 
-        $this->initializer = $initializer;
-
-        parent::__construct('test', $debug);
+        parent::__construct('test', false);
     }
 
     /**
