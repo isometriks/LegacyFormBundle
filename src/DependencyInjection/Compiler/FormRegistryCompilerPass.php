@@ -36,8 +36,14 @@ use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\Extension\Core\Type\TimezoneType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 
+/**
+ * @author Craig Blanchette <craig.blanchette@gmail.com>
+ */
 class FormRegistryCompilerPass implements CompilerPassInterface
 {
+    /**
+     * {@inheritdoc}
+     */
     public function process(ContainerBuilder $container)
     {
         $defaultAliases = array(
