@@ -22,7 +22,7 @@ final class LegacyFormAliasesTest extends KernelTestCase
      */
     protected static function createKernel(array $options = [])
     {
-        return new TestKernel('prod', false);
+        return new TestKernel(false);
     }
 
     /**

@@ -2,20 +2,35 @@
 
 namespace Isometriks\Bundle\LegacyFormBundle\Tests\Functional;
 
+use Closure;
 use Isometriks\Bundle\LegacyFormBundle\IsometriksLegacyFormBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
-use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpKernel\Kernel;
-use Symfony\Component\Routing\RouteCollectionBuilder;
 
 /**
  * @author Kamil Kokot <kamil@kokot.me>
  */
 final class TestKernel extends Kernel
 {
+    /**
+     * @var Closure
+     */
+    private $initializer;
+
+    public function __construct($debug, callable $initializer = null)
+    {
+        if (null === $initializer) {
+            $initializer = function (ContainerBuilder $container, LoaderInterface $loader) {};
+        }
+
+        $this->initializer = $initializer;
+
+        parent::__construct('test', $debug);
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -33,11 +48,15 @@ final class TestKernel extends Kernel
      */
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        $loader->load(function (ContainerBuilder $container) use ($loader) {
+        $initializer = $this->initializer;
+
+        $loader->load(function (ContainerBuilder $container) use ($loader, $initializer) {
             $container->loadFromExtension('framework', [
                 'secret' => 'Rick Astley',
                 'form' => null,
             ]);
+
+            $initializer($container, $loader);
         });
     }
 
