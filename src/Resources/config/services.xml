@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="isometriks.legacy_form.form_registry" class="Isometriks\Bundle\LegacyFormBundle\Form\FormRegistry" decorates="form.registry">
+            <argument type="service" id="isometriks.legacy_form.form_registry.inner" />
+            <argument type="collection">
+                <argument key="birthday">Symfony\Component\Form\Extension\Core\Type\BirthdayType</argument>
+                <argument key="button">Symfony\Component\Form\Extension\Core\Type\ButtonType</argument>
+                <argument key="checkbox">Symfony\Component\Form\Extension\Core\Type\CheckboxType</argument>
+                <argument key="choice">Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
+                <argument key="collection">Symfony\Component\Form\Extension\Core\Type\CollectionType</argument>
+                <argument key="country">Symfony\Component\Form\Extension\Core\Type\CountryType</argument>
+                <argument key="currency">Symfony\Component\Form\Extension\Core\Type\CurrencyType</argument>
+                <argument key="datetime">Symfony\Component\Form\Extension\Core\Type\DateTimeType</argument>
+                <argument key="date">Symfony\Component\Form\Extension\Core\Type\DateType</argument>
+                <argument key="email">Symfony\Component\Form\Extension\Core\Type\EmailType</argument>
+                <argument key="file">Symfony\Component\Form\Extension\Core\Type\FileType</argument>
+                <argument key="form">Symfony\Component\Form\Extension\Core\Type\FormType</argument>
+                <argument key="hidden">Symfony\Component\Form\Extension\Core\Type\HiddenType</argument>
+                <argument key="integer">Symfony\Component\Form\Extension\Core\Type\IntegerType</argument>
+                <argument key="language">Symfony\Component\Form\Extension\Core\Type\LanguageType</argument>
+                <argument key="locale">Symfony\Component\Form\Extension\Core\Type\LocaleType</argument>
+                <argument key="money">Symfony\Component\Form\Extension\Core\Type\MoneyType</argument>
+                <argument key="number">Symfony\Component\Form\Extension\Core\Type\NumberType</argument>
+                <argument key="password">Symfony\Component\Form\Extension\Core\Type\PasswordType</argument>
+                <argument key="percent">Symfony\Component\Form\Extension\Core\Type\PercentType</argument>
+                <argument key="radio">Symfony\Component\Form\Extension\Core\Type\RadioType</argument>
+                <argument key="range">Symfony\Component\Form\Extension\Core\Type\RangeType</argument>
+                <argument key="repeated">Symfony\Component\Form\Extension\Core\Type\RepeatedType</argument>
+                <argument key="reset">Symfony\Component\Form\Extension\Core\Type\ResetType</argument>
+                <argument key="search">Symfony\Component\Form\Extension\Core\Type\SearchType</argument>
+                <argument key="submit">Symfony\Component\Form\Extension\Core\Type\SubmitType</argument>
+                <argument key="text">Symfony\Component\Form\Extension\Core\Type\TextType</argument>
+                <argument key="textarea">Symfony\Component\Form\Extension\Core\Type\TextareaType</argument>
+                <argument key="time">Symfony\Component\Form\Extension\Core\Type\TimeType</argument>
+                <argument key="timezone">Symfony\Component\Form\Extension\Core\Type\TimezoneType</argument>
+                <argument key="url">Symfony\Component\Form\Extension\Core\Type\UrlType</argument>
+            </argument>
+        </service>
+    </services>
+</container>
