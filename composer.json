@@ -20,12 +20,18 @@
     "require-dev": {
         "matthiasnoback/symfony-dependency-injection-test": "^0.7.6",
         "phpunit/phpunit": "^4.8",
-        "phpspec/phpspec": "^2.4"
+        "phpspec/phpspec": "^2.4",
+        "symfony/validator": "^3.0"
     },
     "autoload": {
-        "psr-4": { "Isometriks\\Bundle\\LegacyFormBundle\\": "src/" }
+        "psr-4": {
+            "Isometriks\\Bundle\\LegacyFormBundle\\": "src/"
+        }
     },
     "autoload-dev": {
-        "psr-4": { "spec\\Isometriks\\Bundle\\LegacyFormBundle\\": "spec/" }
+        "psr-4": {
+            "spec\\Isometriks\\Bundle\\LegacyFormBundle\\": "spec/",
+            "Isometriks\\Bundle\\LegacyFormBundle\\Tests\\": "tests/"
+        }
     }
 }
