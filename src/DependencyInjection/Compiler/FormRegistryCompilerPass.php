@@ -46,6 +46,10 @@ class FormRegistryCompilerPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
+        if (!$container->has('form.registry')) {
+            return;
+        }
+
         $defaultAliases = array(
             'birthday' => BirthdayType::class,
             'button' => ButtonType::class,

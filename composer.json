@@ -16,6 +16,10 @@
         "symfony/form": "^3.0",
         "symfony/framework-bundle": "^3.0"
     },
+    "require-dev": {
+        "matthiasnoback/symfony-dependency-injection-test": "^0.7.6",
+        "phpunit/phpunit": "^4.8"
+    },
     "autoload": {
         "psr-4": { "Isometriks\\Bundle\\LegacyFormBundle\\": "src/" }
     }
