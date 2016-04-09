@@ -1,0 +1,4 @@
+suites:
+    main:
+        namespace: Isometriks\Bundle\LegacyFormBundle
+        psr4_prefix: Isometriks\Bundle\LegacyFormBundle
