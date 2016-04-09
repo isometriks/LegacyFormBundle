@@ -10,7 +10,7 @@ use Symfony\Component\Form\FormInterface;
 /**
  * @author Kamil Kokot <kamil@kokot.me>
  */
-final class LegacyFormAliasesTest extends KernelTestCase
+final class SymfonyFormAliasesTest extends KernelTestCase
 {
     /**
      * @var FormFactoryInterface
