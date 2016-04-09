@@ -16,8 +16,6 @@ use Symfony\Component\Routing\RouteCollectionBuilder;
  */
 final class TestKernel extends Kernel
 {
-    use MicroKernelTrait;
-
     /**
      * {@inheritdoc}
      */
@@ -33,20 +31,14 @@ final class TestKernel extends Kernel
     /**
      * {@inheritdoc}
      */
-    protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader)
+    public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        $container->loadFromExtension('framework', [
-            'secret' => 'Rick Astley',
-            'form' => null,
-        ]);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function configureRoutes(RouteCollectionBuilder $routes)
-    {
-        // intentionally left blank
+        $loader->load(function (ContainerBuilder $container) use ($loader) {
+            $container->loadFromExtension('framework', [
+                'secret' => 'Rick Astley',
+                'form' => null,
+            ]);
+        });
     }
 
     /**
