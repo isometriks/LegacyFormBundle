@@ -1,5 +1,6 @@
 {
     "name": "isometriks/legacy-form-bundle",
+    "type": "symfony-bundle",
     "description": "Allows you to use old system of form aliases",
     "keywords": ["symfony2", "form", "legacy", "alias"],
     "authors": [
@@ -9,7 +10,12 @@
             "homepage": "http://isometriks.com"
         }
     ],
+    "require": {
+        "symfony/dependency-injection": "^3.0",
+        "symfony/form": "^3.0",
+        "symfony/http-kernel": "^3.0"
+    },
     "autoload": {
-        "psr-4": { "Isometriks\\Bundle\\LegacyFormBundle\\": "" }
+        "psr-4": { "Isometriks\\Bundle\\LegacyFormBundle\\": "src/" }
     }
 }
