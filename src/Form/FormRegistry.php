@@ -2,29 +2,33 @@
 
 namespace Isometriks\Bundle\LegacyFormBundle\Form;
 
-use Symfony\Component\Form\FormRegistry as BaseFormRegistry;
-use Symfony\Component\Form\ResolvedFormTypeFactoryInterface;
+use Symfony\Component\Form\Exception;
+use Symfony\Component\Form\FormRegistryInterface;
 
 /**
  * @author Craig Blanchette <craig.blanchette@gmail.com>
+ * @author Kamil Kokot <kamil@kokot.me>
  */
-class FormRegistry extends BaseFormRegistry
+final class FormRegistry implements FormRegistryInterface
 {
+    /**
+     * @var FormRegistryInterface
+     */
+    private $decoratedFormRegistry;
+
     /**
      * @var array
      */
-    private $legacyMap;
+    private $aliases;
 
     /**
-     * {@inheritdoc}
-     *
-     * @param array $legacyMap
+     * @param FormRegistryInterface $decoratedFormRegistry
+     * @param array $aliases
      */
-    public function __construct(array $extensions, ResolvedFormTypeFactoryInterface $resolvedTypeFactory, array $legacyMap)
+    public function __construct(FormRegistryInterface $decoratedFormRegistry, array $aliases)
     {
-        parent::__construct($extensions, $resolvedTypeFactory);
-
-        $this->legacyMap = $legacyMap;
+        $this->decoratedFormRegistry = $decoratedFormRegistry;
+        $this->aliases = $aliases;
     }
 
     /**
@@ -32,10 +36,44 @@ class FormRegistry extends BaseFormRegistry
      */
     public function getType($name)
     {
-        if (isset($this->legacyMap[$name])) {
-            $name = $this->legacyMap[$name];
+        return $this->decoratedFormRegistry->getType($this->normalizeName($name));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasType($name)
+    {
+        return $this->decoratedFormRegistry->hasType($this->normalizeName($name));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTypeGuesser()
+    {
+        return $this->decoratedFormRegistry->getTypeGuesser();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getExtensions()
+    {
+        return $this->decoratedFormRegistry->getExtensions();
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return string
+     */
+    private function normalizeName($name)
+    {
+        if (isset($this->aliases[$name])) {
+            return $this->aliases[$name];
         }
 
-        return parent::getType($name);
+        return $name;
     }
 }
