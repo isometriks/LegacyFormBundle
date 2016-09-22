@@ -34,5 +34,37 @@ final class FormRegistryCompilerPass implements CompilerPassInterface
         }
 
         $formRegistry->replaceArgument(1, $aliases);
+
+        // Change form extensions to match the alias
+        foreach ($container->findTaggedServiceIds('form.type_extension') as $id => $foundTags) {
+            $extensionDefinition = $container->getDefinition($id);
+            $tags = $extensionDefinition->getTags();
+
+            if (!isset($tags['form.type_extension'])) {
+                continue;
+            }
+
+            // Alter the tags
+            $newTags = $this->processTags($tags, $aliases);
+
+            // Set altered tags
+            $extensionDefinition->setTags($newTags);
+        }
+    }
+
+    private function processTags(array $tags, array $aliases)
+    {
+        foreach ($tags['form.type_extension'] as $tagIndex => $tag) {
+            if (!isset($tag['extended_type'])) {
+                continue;
+            }
+
+            if (isset($aliases[$tag['extended_type']])) {
+                $tag['extended_type'] = $aliases[$tag['extended_type']];
+                $tags['form.type_extension'][$tagIndex] = $tag;
+            }
+        }
+
+        return $tags;
     }
 }
