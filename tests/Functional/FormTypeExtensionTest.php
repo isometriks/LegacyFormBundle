@@ -13,6 +13,7 @@ use Symfony\Component\Form\FormFactoryInterface;
 
 /**
  * @author Craig Blanchette <craig.blanchette@gmail.com>
+ * @runTestsInSeparateProcesses
  */
 final class FormTypeExtensionTest extends KernelTestCase
 {
