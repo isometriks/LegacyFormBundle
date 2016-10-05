@@ -36,9 +36,8 @@ final class TestKernel extends Kernel
     public function registerBundles()
     {
         return [
-            new FrameworkBundle(),
-
             new IsometriksLegacyFormBundle(),
+            new FrameworkBundle(),
         ];
     }
 

@@ -2,8 +2,10 @@
 
 namespace Isometriks\Bundle\LegacyFormBundle;
 
+use Isometriks\Bundle\LegacyFormBundle\DependencyInjection\Compiler\FormExtensionCompilerPass;
 use Isometriks\Bundle\LegacyFormBundle\DependencyInjection\Compiler\FormRegistryCompilerPass;
 use Isometriks\Bundle\LegacyFormBundle\DependencyInjection\IsometriksLegacyFormExtension;
+use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -21,6 +23,7 @@ final class IsometriksLegacyFormBundle extends Bundle
         parent::build($container);
 
         $container->addCompilerPass(new FormRegistryCompilerPass());
+        $container->addCompilerPass(new FormExtensionCompilerPass(), PassConfig::TYPE_OPTIMIZE);
     }
 
     /**
